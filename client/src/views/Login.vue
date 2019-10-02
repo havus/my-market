@@ -59,7 +59,11 @@
               </v-flex>
             </v-layout>
             <v-layout>
-              <v-btn block large rounded color="primary" class="mt-7" @click="signUp">REGISTER</v-btn>
+              <v-btn
+                block large
+                rounded color="primary"
+                class="mt-7" @click="signUp"
+              >REGISTER</v-btn>
             </v-layout>
           </v-tab-item>
           <v-tab-item class="pa-5">
@@ -131,20 +135,19 @@ export default {
       if (value.length > 0) {
         const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return pattern.test(value) || 'Invalid e-mail.';
-      } else {
-        return true;
       }
+      return true;
     },
   }),
   methods: {
     signIn() {
       this.loading = true;
       axios({
-        method: "POST",
+        method: 'POST',
         url: `${this.baseUrl}/user/signin`,
         data: this.formLogin,
       })
-        .then(({data}) => {
+        .then(({ data }) => {
           this.$store.commit('SET_TOKEN', data.token);
           this.$swal.fire({
             type: 'success',
@@ -152,20 +155,19 @@ export default {
           });
           this.loading = false;
         })
-        .catch(({response}) => {
+        .catch(({ response }) => {
           this.$swal.fire({
             type: 'error',
             title: response.data.message,
           });
           this.loading = false;
-        })
-      // this.$store.dispatch('signIn', this.formLogin);
+        });
     },
     signUp() {
       this.loading = true;
-      let fullname = `${this.formRegister.firstname} ${this.formRegister.lastname}`;
+      const fullname = `${this.formRegister.firstname} ${this.formRegister.lastname}`;
       axios({
-        method: "POST",
+        method: 'POST',
         url: `${this.baseUrl}/user/signup`,
         data: {
           fullname,
@@ -174,23 +176,22 @@ export default {
           password: this.formRegister.password,
         },
       })
-        .then(({data}) => {
-          this.$store.commit('SET_TOKEN', data.token);
+        .then(() => {
           this.$swal.fire({
             type: 'success',
-            title: 'Registration Success!',
+            title: 'Registration Success! \nPlease login :)',
           });
           this.loading = false;
         })
-        .catch(({response}) => {
+        .catch(({ response }) => {
           this.$swal.fire({
             type: 'error',
             title: 'Something went wrong!',
           });
           this.loading = false;
           console.log(response.data, 'err <<<<<<<<<<<<<<');
-        })
-    }
+        });
+    },
   },
   created() {
     if (this.token) {
@@ -202,8 +203,8 @@ export default {
       if (this.token) {
         this.$router.push('/');
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -225,7 +226,6 @@ export default {
     width: 600px;
     overflow: hidden;
   }
-
   h1 {
     letter-spacing: 2px;
   }

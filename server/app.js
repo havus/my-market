@@ -33,7 +33,7 @@ app.listen(process.env.PORT || 3000, () => {
   console.log('\x1b[33m\x1b[1m', ' * * * * * * * * * * * * * * * * * * * * * * * *');
   console.log(
     '\x1b[33m\x1b[1m', ' *',
-    '\x1b[37m\x1b[1m', 'Exclusive connected to port >>>>>> 3000!',
+    '\x1b[37m\x1b[1m', `Exclusive connected to port >>>>>> ${process.env.PORT || 3000}!`,
     '\x1b[33m\x1b[1m', ' *','\x1b[34m\x1b[1m');
     // console.log(`Exclusive connected to port >>>>>> 3000!`)
   console.log('\x1b[33m\x1b[1m', ' * * * * * * * * * * * * * * * * * * * * * * * *');

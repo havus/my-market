@@ -7,7 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     token: null,
-    baseUrl: 'http://localhost:3000',
+    baseUrl: 'http://35.197.146.71',
     products: [],
     carts: [],
     toogleStatus: false,
@@ -70,6 +70,7 @@ export default new Vuex.Store({
         });
     },
     fetchCart(context) {
+      console.log('fetch cart');
       axios({
         method: 'GET',
         url: `${context.state.baseUrl}/user/cart`,
