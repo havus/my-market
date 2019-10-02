@@ -1,7 +1,8 @@
 <template>
   <nav>
     <v-toolbar dense color="transparent" flat class="pl-12">
-      <v-app-bar-nav-icon v-if="token" @click="leftMenuDrawer = !leftMenuDrawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon
+      v-if="token" @click="leftMenuDrawer = !leftMenuDrawer"/>
       <v-toolbar-title id="title">
         <span class="font-weight-bold">E</span>
         <span class="font-weight-bold mx-1">-</span>
@@ -86,12 +87,12 @@ export default {
       {
         route: '/',
         icon: 'home',
-        text: 'Home'
+        text: 'Home',
       },
       {
         route: '/profile',
         icon: 'person',
-        text: 'Your Profile'
+        text: 'Your Profile',
       },
     ],
     leftMenuDrawer: false,
@@ -107,13 +108,13 @@ export default {
         cancelButtonText: 'No',
         cancelButtonColor: '#E53935',
         confirmButtonColor: '#28A745',
-        reverseButtons: true
+        reverseButtons: true,
       })
-        .then(result => {
+        .then((result) => {
           if (result.value) {
             this.$store.commit('LOGOUT');
           }
-        })
+        });
     },
     checkout(cart) {
       this.$swal.fire({
@@ -137,13 +138,13 @@ export default {
         cancelButtonText: 'Cancel',
         cancelButtonColor: '#E53935',
         confirmButtonColor: '#28A745',
-        reverseButtons: true
+        reverseButtons: true,
       })
-        .then(result => {
+        .then((result) => {
           if (result.value) {
             this.$store.dispatch('checkout', cart._id);
           }
-        })
+        });
     },
     deleteCart(cart) {
       this.$swal.fire({
@@ -153,15 +154,16 @@ export default {
         cancelButtonText: 'Cancel',
         cancelButtonColor: '#E53935',
         confirmButtonColor: '#28A745',
-        reverseButtons: true
+        reverseButtons: true,
       })
-        .then(result => {
+        .then((result) => {
           if (result.value) {
+            /* eslint no-underscore-dangle: 0 */
             this.$store.dispatch('deleteCart', cart._id);
           }
-        })
+        });
     },
-  }
+  },
 };
 </script>
 <style scoped>
