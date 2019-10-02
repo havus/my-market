@@ -15,7 +15,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="cart" v-for="cart in carts" :key="cart._id" router :to="'/profile/9123696asd'">
+          <tr class="cart" v-for="cart in carts" :key="cart._id" router :to="'/profile/'+cart._id">
             <td class="text-center">{{ cart.product.name }}</td>
             <td class="text-center"> Checkout first </td>
             <td class="text-center">{{ cart.total_payment }}</td>
@@ -24,7 +24,7 @@
               <v-btn router :to="`/profile/${cart._id}`" depressed color="primary">Details</v-btn>
             </td>
           </tr>
-          <tr class="transaction" v-for="history in histories" :key="history._id" router :to="'/profile/9123696asd'">
+          <tr class="transaction" v-for="history in histories" :key="history._id" router :to="'/profile/'+history._id">
             <td class="text-center px-0">{{ history.product_id.name }}</td>
             <td class="text-center px-0">{{ Date(history.createdAt).substr(0, 15) }}</td>
             <td class="text-center px-0">{{ history.total_payment }}</td>
@@ -53,50 +53,56 @@ export default {
     }
   },
   watch: {
+    carts() {
+      // console.log(this.carts);
+    },
+    histories() {
+      // console.log(this.histories);
+    },
     token() {
       if (!this.token) {
         this.$router.push('/')
       }
     },
     toogleStatus() {
-        switch (this.toogleStatus) {
-          case 'add_cart_success':
-            this.$swal.mixin({
-              toast: true,
-              position: 'top',
-              showConfirmButton: false,
-              timer: 3000
-            }).fire({
-              type: 'success',
-              title: 'Added to your cart :)'
-            })
-            break;
-          case 'checkout_success':
-            this.$swal.mixin({
-              toast: true,
-              position: 'top',
-              showConfirmButton: false,
-              timer: 3000
-            }).fire({
-              type: 'success',
-              title: 'Checkout success :)'
-            })
-            break;
-          case 'delete_cart_success':
-            console.log('jalan');
-            this.$swal.mixin({
-              toast: true,
-              position: 'top',
-              showConfirmButton: false,
-              timer: 3000
-            }).fire({
-              type: 'success',
-              title: 'Cart deleted :)'
-            })
-            break;
-          default:
-            break;
-        }
+      switch (this.toogleStatus) {
+        case 'add_cart_success':
+          this.$swal.mixin({
+            toast: true,
+            position: 'top',
+            showConfirmButton: false,
+            timer: 3000
+          }).fire({
+            type: 'success',
+            title: 'Added to your cart :)'
+          })
+          break;
+        case 'checkout_success':
+          this.$swal.mixin({
+            toast: true,
+            position: 'top',
+            showConfirmButton: false,
+            timer: 3000
+          }).fire({
+            type: 'success',
+            title: 'Checkout success :)'
+          })
+          break;
+        case 'delete_cart_success':
+          console.log('jalan');
+          this.$swal.mixin({
+            toast: true,
+            position: 'top',
+            showConfirmButton: false,
+            timer: 3000
+          }).fire({
+            type: 'success',
+            title: 'Cart deleted :)'
+          })
+          break;
+        default:
+          break;
+      }
     },
   }
 }
