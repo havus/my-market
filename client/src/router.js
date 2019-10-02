@@ -27,8 +27,8 @@ export default new Router({
           // when /user/:id/posts is matched
           path: ':id',
           component: () => import(/* webpackChunkName: "home" */ './views/Detail.vue'),
-        }
-      ]
+        },
+      ],
     },
   ],
 });
